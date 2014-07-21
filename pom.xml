@@ -15,15 +15,6 @@
     </properties>
     
     <dependencies>
-        <!-- for JAX-RS on jetty -->
-        <dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <!-- if your container implements Servlet API older than 3.0, use "jersey-container-servlet-core"  -->
-            <artifactId>jersey-container-servlet</artifactId>
-            <version>2.10.1</version>
-        </dependency>
-
-        <!-- jpa -->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
