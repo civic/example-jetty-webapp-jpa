@@ -5,7 +5,7 @@
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:h2:~/Study/Java/example-jetty-webapp-jpa/target/h2;create=true"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:h2:./target/h2;create=true"/>
     </properties>
   </persistence-unit>
 </persistence>
