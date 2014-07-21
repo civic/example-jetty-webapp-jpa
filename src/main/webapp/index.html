@@ -3,6 +3,19 @@
     <head>
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript">
+            var ws = new WebSocket('ws://localhost:8080/websocket');
+            ws.onopen = function(){
+                setInterval(function(){
+                    ws.send(new Date().toString());
+                }, 5000);
+            };
+            ws.onmessage = function(e){
+                console.log(e.data);
+            };
+
+
+        </script>
     </head>
     <body>
         <h1>Hello World!</h1>
