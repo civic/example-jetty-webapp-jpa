@@ -13,9 +13,9 @@ import javax.ws.rs.Path;
 public class SampleJaxRs {
 
     @GET
-    @Produces("application/json")
-    public String getJson() {
-        return Json.createObjectBuilder().add("foobar", "123").build().toString();
+    @Produces("text/plain")
+    public String getText() {
+        return "Hello JAX-RS";
     }
 
 }
