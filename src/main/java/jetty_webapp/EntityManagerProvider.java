@@ -18,6 +18,9 @@ public class EntityManagerProvider implements Provider<EntityManager>{
     @Inject
     private HttpServletRequest request;
 
+    public EntityManagerProvider() {
+        System.out.println("create provider.");
+    }
 
     @Override
     public EntityManager get() {
