@@ -4,7 +4,7 @@
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript">
-            var ws = new WebSocket('ws://localhost:8080/websocket');
+            var ws = new WebSocket('ws://localhost:8080/example-jetty-webapp-jpa/websocket');
             ws.onopen = function(){
                 setInterval(function(){
                     ws.send(new Date().toString());
