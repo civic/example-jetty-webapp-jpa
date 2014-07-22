@@ -1,5 +1,8 @@
 package jetty_webapp.jpa;
 
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.google.inject.Singleton;
 import java.io.IOException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,39 +18,29 @@ import jetty_webapp.jpa.entity.Customer;
 /**
  * jetty上のwebappからJPAを使用したサーブレット
  */
-@WebServlet("/jpa-servlet")
+@Singleton
 public class SampleJPAServlet extends HttpServlet {
-    private EntityManagerFactory emf;
+    @Inject
+    private Injector injector;
 
     @Override
     public void init() throws ServletException {
         //アノテーションからは取れないのでコードで取得
-        emf = Persistence.createEntityManagerFactory("webapp-jpa-pu");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        EntityManager em = null;
-        try {
-            em = emf.createEntityManager();
+        EntityManager em = injector.getInstance(EntityManager.class);
 
-            //Customerの追加
-            Customer customer = new Customer();
-            customer.setCustomerName("c-"+ System.currentTimeMillis());
+        //Customerの追加
+        Customer customer = new Customer();
+        customer.setCustomerName("c-"+ System.currentTimeMillis());
 
-            EntityTransaction tx = em.getTransaction();
-            tx.begin();
-            em.persist(customer);
-            tx.commit();
+        em.persist(customer);
 
-            //Customerの検索
-            for (Customer c : em.createNamedQuery("Customer.findAll", Customer.class).getResultList()){
-                resp.getWriter().println(c);
-            }
-        } finally {
-            if (em != null){
-                em.close();
-            }
+        //Customerの検索
+        for (Customer c : em.createNamedQuery("Customer.findAll", Customer.class).getResultList()){
+            resp.getWriter().println(c);
         }
     }
     

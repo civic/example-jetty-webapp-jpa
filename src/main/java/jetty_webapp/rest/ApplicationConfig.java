@@ -24,7 +24,9 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(jetty_webapp.rest.JaxRsEntityManagerFilter.class);
         resources.add(jetty_webapp.rest.SampleJaxRs.class);
     }
+    
     
 }

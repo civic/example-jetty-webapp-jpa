@@ -18,8 +18,17 @@
         <!-- for JAX-RS on jetty -->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
-            <!-- if your container implements Servlet API older than 3.0, use "jersey-container-servlet-core"  -->
             <artifactId>jersey-container-servlet</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-processing</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
             <version>2.10.1</version>
         </dependency>
 
@@ -41,7 +50,23 @@
             <artifactId>h2</artifactId>
             <version>1.4.180</version>
         </dependency>
+
         <!-- javaee.webprofile -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey.contribs</groupId>
+            <artifactId>jersey-guice</artifactId>
+            <version>1.18.1</version>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -97,19 +122,34 @@
                     </execution>
                 </executions>
             </plugin>
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.2.1.v20140609</version>
-				<configuration>
-					<scanIntervalSeconds>1</scanIntervalSeconds>
-					<stopKey>foo</stopKey>
-					<stopPort>9999</stopPort>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.1.v20140609</version>
+                <configuration>
+                    <scanIntervalSeconds>1</scanIntervalSeconds>
+                    <stopKey>foo</stopKey>
+                    <stopPort>9999</stopPort>
                     <useProvidedScope>true</useProvidedScope>
-				</configuration>
-
-
-			</plugin>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.glassfish.jersey.media</groupId>
+                        <artifactId>jersey-media-json-processing</artifactId>
+                        <version>2.10.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.glassfish.jersey.media</groupId>
+                        <artifactId>jersey-media-json-jackson</artifactId>
+                        <version>2.10.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.glassfish</groupId>
+                        <artifactId>javax.json</artifactId>
+                        <version>1.0.4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
 

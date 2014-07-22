@@ -1,5 +1,6 @@
 package jetty_webapp.servlet;
 
+import com.google.inject.Singleton;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * アノテーションを使用したサーブレット
  */
-@WebServlet("/sample")
+@Singleton
 public class SampleServlet extends HttpServlet {
 
     @Override
