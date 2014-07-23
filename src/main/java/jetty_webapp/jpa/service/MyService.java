@@ -22,6 +22,10 @@ public class MyService {
 
         em.persist(c);
 
+        if (name.charAt(0) == 'X'){
+            throw new RuntimeException();
+        }
+
     }
 
     public List<Customer> list(){

@@ -1,17 +1,21 @@
 package jetty_webapp.websocket;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.websocket.OnMessage;
 import javax.websocket.server.ServerEndpoint;
+import jetty_webapp.jpa.service.MyService;
 
 /**
  * WebSocket Endpoint
  */
 @ServerEndpoint("/websocket")
 public class SampleWSEndpoint {
+    @Inject MyService service;
 
     @OnMessage
     public String onMessage(String message) {
-        return message.toUpperCase();
+        return message.toUpperCase() + service.list().get(0).getCustomerName();
     }
     
 }
