@@ -15,14 +15,15 @@ import javax.servlet.annotation.WebListener;
  */
 @WebListener
 public class MyGuiceServletContextListener extends GuiceServletContextListener{
+    public static Injector injector;
 
     @Override
     protected Injector getInjector() {
-        return Guice.createInjector(new ServletModule(){
+        injector = Guice.createInjector(new ServletModule(){
 
             @Override
             protected void configureServlets() {
-                filter("/*").through(MyEntityManagerFilter.class);
+                filter("/rest/*", "/websocket").through(MyEntityManagerFilter.class);
 
                 Map params = new HashMap();
                 params.put("javax.ws.rs.Application", "jetty_webapp.rest.SampleResourceConfig");
@@ -32,7 +33,8 @@ public class MyGuiceServletContextListener extends GuiceServletContextListener{
                 bind(EntityManager.class).toProvider(EntityManagerProvider.class);
             }
             
-       });
+        });
+        return injector;
     }
     
 }

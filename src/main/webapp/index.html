@@ -12,6 +12,7 @@
             };
             ws.onmessage = function(e){
                 console.log(e.data);
+                document.getElementsByTagName("pre").item(0).appendChild(document.createTextNode(e.data+"\n"));
             };
 
 
@@ -19,5 +20,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <pre></pre>
     </body>
 </html>

@@ -32,3 +32,9 @@ JAX-RSをGuice化で使用するためにJavaEEの@ApplicationPathを使ったJA
 - InjectorからEntityManagerを取得 
     - Providerはrequest属性からEntityManagerを取得
 - Filterでtransactionをコミット
+
+## 課題
+
+- WebSocket のServerEndpointからInjectorを取得できないか？
+    - Configuratorで設定すればできそうだが、ServletContextにアクセスできない
+
