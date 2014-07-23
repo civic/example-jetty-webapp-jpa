@@ -81,7 +81,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "jetty_webapp.entity.Customer[ customerId=" + customerId + " ]";
+        return "Customer[ customerId=" + customerId + " name=" + customerName + " ]";
     }
     
 }
