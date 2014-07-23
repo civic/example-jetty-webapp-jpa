@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package jetty_webapp;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
+
 /**
- *
- * @author tsasaki
+ * EntityManagerのInject用Provider.
+ * フィルタでリクエスト属性に設定したEntityManagerを取得するGuice Provider
  */
 public class EntityManagerProvider implements Provider<EntityManager>{
     @Inject

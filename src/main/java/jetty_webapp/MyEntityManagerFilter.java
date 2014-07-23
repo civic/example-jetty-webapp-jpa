@@ -20,11 +20,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- *
- * @author tsasaki
+ * EntityManagerをリクエストオブジェクトに設定するフィルタ
  */
 @Singleton
-public class MyFilter implements Filter{
+public class MyEntityManagerFilter implements Filter{
     private EntityManagerFactory emf;
 
     @Override
@@ -40,7 +39,6 @@ public class MyFilter implements Filter{
         tx.begin();
 
         request.setAttribute("_entity.manager", em);
-        request.setAttribute("_entity.transaction", tx);
 
         try {
             chain.doFilter(request, response);
@@ -48,11 +46,10 @@ public class MyFilter implements Filter{
             tx.commit();
         } catch (IOException | ServletException th){
             tx.rollback();
+            throw th;
         } finally {
             em.close();
-
         }
-
     }
 
     @Override

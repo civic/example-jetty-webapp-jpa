@@ -1,4 +1,4 @@
-package jetty_webapp.jpa.entity;
+package jetty_webapp.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;

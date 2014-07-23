@@ -1,7 +1,6 @@
 
 package jetty_webapp.rest;
 
-import com.google.inject.Inject;
 import com.google.inject.Injector;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import jetty_webapp.jpa.entity.Customer;
+import jetty_webapp.entity.Customer;
 
 /**
  * REST Web Service
@@ -36,28 +35,18 @@ public class SampleJaxRs {
     public List<Customer> getCustomer() {
         EntityManager em = getInjector().getInstance(EntityManager.class);
         {
+
             Customer c = new Customer();
             c.setCustomerName(new Date().toString());
 
             em.persist(c);
-
         }
 
         List<Customer> list = em.createNamedQuery("Customer.findAll").getResultList();
-
-        /*
-        {
-            Customer c = new Customer();
-            c.setCustomerName(new Date().toString());
-            c.setCustomerId(1);
-            em.persist(c);
-        }
-        */
         return list;
     }
 
     public Injector getInjector(){
         return (Injector)request.getServletContext().getAttribute(Injector.class.getName());
-
     }
 }
