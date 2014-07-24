@@ -19,7 +19,7 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import jetty_webapp.jpa.entity.Customer;
-import jetty_webapp.jpa.service.MyService;
+import jetty_webapp.jpa.service.CustomerService;
 
 /**
  * jetty上のwebappからJPAを使用したサーブレット
@@ -27,15 +27,15 @@ import jetty_webapp.jpa.service.MyService;
 @WebServlet("/jpa-servlet")
 public class SampleJPAServlet extends HttpServlet {
     @Inject
-    private MyService service;
+    private CustomerService service;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        service.addCustomer("hoge");
+        service.addNewCustomer("hoge");
 
         //Customerの一覧取得
-        for (Customer c : service.list()){
+        for (Customer c : service.all()){
             resp.getWriter().println(c);
         }
 
